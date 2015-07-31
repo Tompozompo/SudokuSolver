@@ -1,6 +1,5 @@
 package model;
 
-import javax.management.relation.Relation;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +9,6 @@ public class Square
 {
     private int value;
     private ArrayList<Integer> possibleValues;
-    //private ArrayList<Square> relatedSquares;
     private Relationship boxRel;
     private Relationship colRel;
     private Relationship rowRel;
@@ -18,7 +16,6 @@ public class Square
     public Square()
     {
         possibleValues = new ArrayList<Integer>();
-        //relatedSquares = new ArrayList<Square>();
         boxRel = new Relationship();
         colRel = new Relationship();
         rowRel = new Relationship();
@@ -52,8 +49,6 @@ public class Square
         }
     }
 
-    //region Subject methods
-
     public void setValue(int value)
     {
         this.value = value;
@@ -61,16 +56,10 @@ public class Square
         for(int val : temp)
             removePossibleValue(val);
 
-        notifyAllObservers();
+        boxRel.update(this);
+        rowRel.update(this);
+        colRel.update(this);
     }
-
-    /*
-    public void attach (Square related)
-    {
-        if(!relatedSquares.contains(related))
-            relatedSquares.add(related);
-    }
-    */
 
     public void attachBoxRel (Relationship rel)
     {
@@ -87,30 +76,4 @@ public class Square
         rowRel = rel;
     }
 
-    private void notifyAllObservers() {
-        /*
-        ArrayList<Square> tempList= new ArrayList<Square>(relatedSquares);
-        relatedSquares.clear();
-        for (Square rs : tempList) {
-            rs.update(this);
-        }
-        */
-        boxRel.update(this);
-        rowRel.update(this);
-        colRel.update(this);
-    }
-
-    //endregion
-
-    //region Observer methods
-
-    /*
-    public void update(Square square)
-    {
-        relatedSquares.remove(square);
-        removePossibleValue(square.getValue());
-    }
-    */
-
-    //endregion
 }

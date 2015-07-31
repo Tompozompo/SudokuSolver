@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -19,38 +18,6 @@ public class SudokuPuzzle
         }
         setUpRelationships();
     }
-
-    /*
-    public void setUpRelationships()
-    {
-        for(int i=0; i<9; i++)
-        {
-            for(int j=0; j<9;j++)
-            {
-                Square current = puzzle[i][j];
-                //set up rows and columns
-                for(int k=0; k<9;k++)
-                {
-                    if(k != j)
-                        current.attach(puzzle[i][k]);
-                    if(k != i)
-                        current.attach(puzzle[k][j]);
-                }
-                int indexi = i/3;
-                int indexj = j/3;
-                //set up same-square
-                for(int m=3*indexi; m<(3+3*indexi); m++)
-                {
-                    for(int n=3*indexj; n<(3+3*indexj); n++)
-                    {
-                        if(m != i && n != j)
-                            current.attach(puzzle[m][n]);
-                    }
-                }
-            }
-        }
-    }
-    */
 
     public void setUpRelationships()
     {
